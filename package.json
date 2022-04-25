@@ -1,0 +1,21 @@
+{
+    "name": "learn-express-js",
+    "version": "0.0.1",
+    "author": "Florencius Benardi",
+    "main": "app.js",
+    "scripts": {
+        "start": "nodemon app.js",
+        "test": "echo \"Test Application\" && exit 1"
+    },
+    "dependencies": {
+        "@sentry/node": "^6.19.6",
+        "@sentry/tracing": "^6.19.6",
+        "express": "^4.17.3",
+        "moment": "^2.29.3",
+        "pg": "^8.7.3",
+        "restler": "^3.4.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    }
+}
