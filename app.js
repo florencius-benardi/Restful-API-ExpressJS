@@ -1,13 +1,15 @@
 const express = require('express')
+require('dotenv').config();
 
 const app = express()
-const port = 4000
 
-app.get('/', (req, res) => {
-    res.send('HELO')
+app.get('/', async (req, res) => {
+    // const rows = await process.postgresql.query('SELECT * FROM books');
+    // console.log(rows);
+    res.send('ok')
 })
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+app.listen(process.env.NODE_PORT, () => {
+    console.log('1')
 })
 
