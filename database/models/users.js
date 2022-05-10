@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 
-const userCol = require('../tableColumns/usersCol')
+const userCol = require('../tableColumns/system/usersCol')
 
 module.exports = (sequelize, DataTypes) => {
 
@@ -41,26 +41,65 @@ module.exports = (sequelize, DataTypes) => {
   } = userCol
 
   Users.init({
-    [ATTR_CHAR_FIRSTNAME]: DataTypes.STRING,
-    [ATTR_CHAR_LASTNAME]: DataTypes.STRING,
-    [ATTR_CHAR_USERNAME]: DataTypes.STRING,
-    [ATTR_CHAR_EMAIL]: DataTypes.STRING,
-    [ATTR_CHAR_PASSWORD]: DataTypes.STRING,
-    [ATTR_CHAR_MOBILE]: DataTypes.STRING,
-    [ATTR_INT_WRONG_PASS]: DataTypes.INTEGER,
-    [ATTR_INT_STATUS]: DataTypes.INTEGER,
-    [ATTR_CHAR_CONFIRMATION_CODE]: DataTypes.STRING,
-    [ATTR_DATETIME_LAST_REQUEST_TIME]: DataTypes.STRING,
-    [ATTR_CHAR_REMEMBER_TOKEN]: DataTypes.STRING,
-    [ATTR_DATETIME_VERIFIED]: DataTypes.STRING,
-    [ATTR_INT_ID]: DataTypes.INTEGER,
-    [ATTR_DATETIME_CREATED_AT]: DataTypes.DATE,
-    [ATTR_DATETIME_UPDATED_AT]: DataTypes.DATE,
-    [ATTR_INT_CREATED_BY]: DataTypes.INTEGER,
-    [ATTR_INT_UPDATED_BY]: DataTypes.INTEGER,
-    [ATTR_DATETIME_DELETED_AT]: DataTypes.STRING
+    [ATTR_INT_ID]: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    [ATTR_CHAR_FIRSTNAME]: {
+      type: DataTypes.STRING
+    },
+    [ATTR_CHAR_LASTNAME]: {
+      type: DataTypes.STRING
+    },
+    [ATTR_CHAR_USERNAME]: {
+      type: DataTypes.STRING
+    },
+    [ATTR_CHAR_EMAIL]: {
+      type: DataTypes.STRING
+    },
+    [ATTR_CHAR_PASSWORD]: {
+      type: DataTypes.STRING
+    },
+    [ATTR_CHAR_MOBILE]: {
+      type: DataTypes.STRING
+    },
+    [ATTR_INT_WRONG_PASS]: {
+      type: DataTypes.INTEGER
+    },
+    [ATTR_INT_STATUS]: {
+      type: DataTypes.INTEGER
+    },
+    [ATTR_CHAR_CONFIRMATION_CODE]: {
+      type: DataTypes.STRING
+    },
+    [ATTR_DATETIME_LAST_REQUEST_TIME]: {
+      type: DataTypes.STRING
+    },
+    [ATTR_CHAR_REMEMBER_TOKEN]: {
+      type: DataTypes.STRING
+    },
+    [ATTR_DATETIME_VERIFIED]: {
+      type: DataTypes.STRING
+    },
+    [ATTR_DATETIME_CREATED_AT]: {
+      type: DataTypes.DATE
+    },
+    [ATTR_DATETIME_UPDATED_AT]: {
+      type: DataTypes.DATE
+    },
+    [ATTR_INT_CREATED_BY]: {
+      type: DataTypes.INTEGER
+    },
+    [ATTR_INT_UPDATED_BY]: {
+      type: DataTypes.INTEGER
+    },
+    [ATTR_DATETIME_DELETED_AT]: {
+      type: DataTypes.DATE
+    }
   }, {
     sequelize,
+    timestamps: true,
     modelName: ATTR_TABLE,
   });
   return Users;

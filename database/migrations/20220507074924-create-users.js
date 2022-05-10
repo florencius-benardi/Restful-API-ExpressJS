@@ -1,5 +1,5 @@
 'use strict';
-const usermodel = require('../tableColumns/usersCol')
+const userCol = require('../tableColumns/system/usersCol')
 
 const { ATTR_TABLE,
   ATTR_CHAR_FIRSTNAME,
@@ -19,7 +19,7 @@ const { ATTR_TABLE,
   ATTR_DATETIME_UPDATED_AT,
   ATTR_INT_CREATED_BY,
   ATTR_INT_UPDATED_BY,
-  ATTR_DATETIME_DELETED_AT } = usermodel
+  ATTR_DATETIME_DELETED_AT } = userCol
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -61,6 +61,10 @@ module.exports = {
         allowNull: false,
         default: 0
       },
+      [ATTR_INT_STATUS]: {
+        allowNull: true,
+        type: Sequelize.SMALLINT,
+      },
       [ATTR_INT_CREATED_BY]: {
         allowNull: true,
         type: Sequelize.BIGINT,
@@ -74,6 +78,14 @@ module.exports = {
         type: Sequelize.DATE
       },
       [ATTR_DATETIME_UPDATED_AT]: {
+        allowNull: true,
+        type: Sequelize.DATE
+      },
+      [ATTR_DATETIME_VERIFIED]: {
+        allowNull: true,
+        type: Sequelize.DATE
+      },
+      [ATTR_DATETIME_DELETED_AT]: {
         allowNull: true,
         type: Sequelize.DATE
       }

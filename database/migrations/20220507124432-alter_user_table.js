@@ -1,6 +1,6 @@
 'use strict';
 
-const usermodel = require('../tableColumns/usersCol')
+const usermodel = require('../tableColumns/system/usersCol')
 
 const { ATTR_TABLE, ATTR_INT_UPDATED_BY, ATTR_INT_CREATED_BY, ATTR_INT_ID } = usermodel
 
@@ -10,7 +10,7 @@ module.exports = {
       queryInterface.addConstraint(ATTR_TABLE, {
         type: 'FOREIGN KEY',
         fields: [ATTR_INT_CREATED_BY],
-        name: `fk_${ATTR_INT_CREATED_BY}_${ATTR_TABLE}`,
+        name: `fk_${ATTR_TABLE}_${ATTR_INT_CREATED_BY}_${ATTR_TABLE}`,
         references: {
           table: ATTR_TABLE,
           field: ATTR_INT_ID
@@ -20,7 +20,7 @@ module.exports = {
       queryInterface.addConstraint(ATTR_TABLE, {
         type: 'FOREIGN KEY',
         fields: [ATTR_INT_UPDATED_BY],
-        name: `fk_${ATTR_INT_UPDATED_BY}_${ATTR_TABLE}`,
+        name: `fk_${ATTR_TABLE}_${ATTR_INT_UPDATED_BY}_${ATTR_TABLE}`,
         references: {
           table: ATTR_TABLE,
           field: ATTR_INT_ID
