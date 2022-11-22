@@ -15,7 +15,7 @@ const { ATTR_TABLE,
   ATTR_DATETIME_DELETED_AT } = rolesCol
 
 module.exports = (sequelize, DataTypes) => {
-  class roles extends Model {
+  class Roles extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  roles.init({
+  Roles.init({
     [ATTR_CHAR_DESCRIPTION]: DataTypes.STRING,
     [ATTR_INT_ID]: DataTypes.INTEGER,
     [ATTR_DATETIME_CREATED_AT]: DataTypes.DATE,

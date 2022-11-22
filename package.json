@@ -1,5 +1,5 @@
 {
-    "type": "module",
+    "type": "commonjs",
     "name": "learn-express-js",
     "version": "0.0.1",
     "author": "Florencius Benardi",
@@ -19,6 +19,7 @@
         "dotenv": "^16.0.0",
         "express": "^4.18.1",
         "moment": "^2.29.3",
+        "oauth2-server": "^3.1.1",
         "pg": "^8.7.3",
         "restler": "^2.0.1",
         "sequelize": "^6.19.0"

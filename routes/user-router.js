@@ -7,7 +7,7 @@ router.use((req, res, next) => {
     next()
 })
 // define the home page route
-router.get('/', (req, res) => {
+router.route('/').get((req, res) => {
     res.send('Birds home page')
 })
 // define the about route
