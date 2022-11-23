@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 const sequelize = require('./database/models/index')
+const config = require('./config/sequelize.js');
 
 const userRoutes = require('./routes/user-router')
 const authRoutes = require('./routes/auth-router')
@@ -19,8 +20,10 @@ app.use('/', userRoutes)
 app.use('/', authRoutes)
 
 app.listen(process.env.NODE_PORT, () => {
-    sequelize.authenticate().then(function (errors) { console.log(errors) });
+    // sequelize.authenticate().then(function (errors) { console.log(errors) });
+
     // console.log(`Application ${process.env.NODE_NAME} => START on Port ${process.env.NODE_PORT}`)
+    console.log(config[process.env['NODE_ENV']])
 })
 
 
