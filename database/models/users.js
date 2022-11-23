@@ -1,9 +1,11 @@
 'use strict';
 const {
-  Model
+  DataTypes, Model
 } = require('sequelize');
 
-const userCol = require('../tableColumns/system/usersCol')
+const sequelize = require('./index');
+
+const userCol = require('../tableColumns/system/users')
 
 module.exports = (sequelize, DataTypes) => {
 
@@ -16,6 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
+
+    
   }
 
   const {
@@ -43,6 +47,7 @@ module.exports = (sequelize, DataTypes) => {
   Users.init({
     [ATTR_INT_ID]: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       autoIncrement: true,
       primaryKey: true
     },

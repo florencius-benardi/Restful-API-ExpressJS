@@ -1,6 +1,10 @@
 const express = require('express')
-const userRouter = require('./routes/user-router')
-const authRouter = require('./routes/auth-router')
+const bodyParser = require('body-parser')
+
+const sequelize = require('./database/models/index')
+
+const userRoutes = require('./routes/user-router')
+const authRoutes = require('./routes/auth-router')
 require('dotenv').config();
 
 const app = express()
@@ -11,10 +15,12 @@ const app = express()
 //     res.send('ok')
 // })
 
-app.use('/', userRouter)
-app.use('/', authRouter)
+app.use('/', userRoutes)
+app.use('/', authRoutes)
 
 app.listen(process.env.NODE_PORT, () => {
-    console.log(`Application ${process.env.NODE_NAME} => START on Port ${process.env.NODE_PORT}`)
+    sequelize.authenticate().then(function (errors) { console.log(errors) });
+    // console.log(`Application ${process.env.NODE_NAME} => START on Port ${process.env.NODE_PORT}`)
 })
+
 

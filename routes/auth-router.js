@@ -1,5 +1,9 @@
 const express = require('express')
+const path = require('path')
+
 const router = express.Router()
+
+const authController = require('../app/Http/Controllers/Auth/authentication');
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -8,9 +12,7 @@ router.use((req, res, next) => {
 })
 
 // define the home page route
-router.get('/login', (req, res) => {
-    res.send('login home page')
-})
+router.get('/login', authController.logIn)
 
 // define the home page route
 router.post('/register', (req, res) => {

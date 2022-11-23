@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 
-const rolesCol = require('../tableColumns/system/rolesCol')
+const rolesCol = require('../tableColumns/system/roles')
 
 const { ATTR_TABLE,
   ATTR_CHAR_DESCRIPTION,
@@ -27,7 +27,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   Roles.init({
     [ATTR_CHAR_DESCRIPTION]: DataTypes.STRING,
-    [ATTR_INT_ID]: DataTypes.INTEGER,
+    [ATTR_INT_ID]: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true
+    },
     [ATTR_DATETIME_CREATED_AT]: DataTypes.DATE,
     [ATTR_DATETIME_UPDATED_AT]: DataTypes.DATE,
     [ATTR_INT_CREATED_BY]: DataTypes.INTEGER,
@@ -35,7 +40,9 @@ module.exports = (sequelize, DataTypes) => {
     [ATTR_DATETIME_DELETED_AT]: DataTypes.DATE
   }, {
     sequelize,
+    timestamps: true,
     modelName: ATTR_TABLE,
   });
-  return roles;
+
+  return Roles;
 };
