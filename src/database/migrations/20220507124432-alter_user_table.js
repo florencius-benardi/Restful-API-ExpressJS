@@ -1,8 +1,9 @@
 'use strict';
+/** @type {import('sequelize-cli').Migration} */
 
-const usermodel = require('../tableColumns/system/usersCol')
+const userFields = require('../tableColumns/system/users')
 
-const { ATTR_TABLE, ATTR_INT_UPDATED_BY, ATTR_INT_CREATED_BY, ATTR_INT_ID } = usermodel
+const { ATTR_TABLE, ATTR_INT_UPDATED_BY, ATTR_INT_CREATED_BY, ATTR_INT_ID } = userFields
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -31,6 +32,7 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-
+    queryInterface.removeConstraint(ATTR_TABLE, `fk_${ATTR_TABLE}_${ATTR_INT_CREATED_BY}_${ATTR_TABLE}`)
+    queryInterface.removeConstraint(ATTR_TABLE, `fk_${ATTR_TABLE}_${ATTR_INT_UPDATED_BY}_${ATTR_TABLE}`)
   }
 };

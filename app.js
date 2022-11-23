@@ -1,29 +1,19 @@
+const api = require('./src/routes/api')
 const express = require('express')
+const app = express()
 const bodyParser = require('body-parser')
 
-const sequelize = require('./database/models/index')
-const config = require('./config/sequelize.js');
-
-const userRoutes = require('./routes/user-router')
-const authRoutes = require('./routes/auth-router')
 require('dotenv').config();
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
 
-const app = express()
+// parse application/json
+app.use(bodyParser.json())
 
-// app.get('/', async (req, res) => {
-//     // const rows = await process.postgresql.query('SELECT * FROM books');
-//     // console.log(rows);
-//     res.send('ok')
-// })
-
-app.use('/', userRoutes)
-app.use('/', authRoutes)
+app.use('/', api)
 
 app.listen(process.env.NODE_PORT, () => {
-    // sequelize.authenticate().then(function (errors) { console.log(errors) });
-
-    // console.log(`Application ${process.env.NODE_NAME} => START on Port ${process.env.NODE_PORT}`)
-    console.log(config[process.env['NODE_ENV']])
+    console.log(`Application ${process.env.NODE_NAME} => START on Port ${process.env.NODE_PORT}`)
 })
 
 

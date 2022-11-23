@@ -1,5 +1,6 @@
 'use strict';
-const userCol = require('../tableColumns/system/usersCol')
+/** @type {import('sequelize-cli').Migration} */
+const userFields = require('../tableColumns/system/users')
 
 const { ATTR_TABLE,
   ATTR_CHAR_FIRSTNAME,
@@ -12,14 +13,13 @@ const { ATTR_TABLE,
   ATTR_INT_STATUS,
   ATTR_CHAR_CONFIRMATION_CODE,
   ATTR_DATETIME_LAST_REQUEST_TIME,
-  ATTR_CHAR_REMEMBER_TOKEN,
   ATTR_DATETIME_VERIFIED,
   ATTR_INT_ID,
   ATTR_DATETIME_CREATED_AT,
   ATTR_DATETIME_UPDATED_AT,
   ATTR_INT_CREATED_BY,
   ATTR_INT_UPDATED_BY,
-  ATTR_DATETIME_DELETED_AT } = userCol
+  ATTR_DATETIME_DELETED_AT } = userFields
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -54,7 +54,7 @@ module.exports = {
       },
       [ATTR_CHAR_MOBILE]: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       [ATTR_INT_WRONG_PASS]: {
         type: Sequelize.SMALLINT,
@@ -72,6 +72,14 @@ module.exports = {
       [ATTR_INT_UPDATED_BY]: {
         allowNull: true,
         type: Sequelize.BIGINT,
+      },
+      [ATTR_CHAR_CONFIRMATION_CODE]: {
+        type: Sequelize.STRING(100),
+        allowNull: true,
+      },
+      [ATTR_DATETIME_LAST_REQUEST_TIME]: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       [ATTR_DATETIME_CREATED_AT]: {
         allowNull: true,

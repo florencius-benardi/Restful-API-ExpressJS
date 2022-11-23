@@ -1,6 +1,7 @@
 'use strict';
+/** @type {import('sequelize-cli').Migration} */
 
-const rolesCol = require('../tableColumns/system/rolesCol')
+const rolesCol = require('../tableColumns/system/roles')
 
 const { ATTR_TABLE,
   ATTR_CHAR_DESCRIPTION,
