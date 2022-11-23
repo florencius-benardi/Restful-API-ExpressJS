@@ -121,6 +121,17 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: ATTR_DATETIME_UPDATED_AT,
     paranoid: true,
     deletedAt: ATTR_DATETIME_DELETED_AT,
+    defaultScope: {
+      attributes: {
+        exclude: [
+          ATTR_CHAR_PASSWORD,
+          ATTR_DATETIME_LAST_REQUEST_TIME,
+          ATTR_CHAR_CONFIRMATION_CODE,
+          ATTR_INT_WRONG_PASS,
+          ATTR_DATETIME_VERIFIED
+        ]
+      },
+    }
   });
 
   return Users;
