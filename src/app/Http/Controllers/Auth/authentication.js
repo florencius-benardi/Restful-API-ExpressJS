@@ -1,5 +1,8 @@
-const authentication = []
+const authentication = {
+    generateToken: (req, res, next) => { res.send('ok') },
+    validationToken: () => { },
+    getAccessToken: () => { },
+    revokeToken: () => { }
+}
 
-exports.logIn = (req, res, next) => {
-    res.send('Birds home page Login')
-};
+exports.authentication
