@@ -1,7 +1,7 @@
 'use strict'
 
 global.responseJson = (res, data, message, status) => {
-    var responses = {
+    let responses = {
         status,
         data,
         message
