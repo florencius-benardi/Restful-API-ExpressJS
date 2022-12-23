@@ -14,6 +14,10 @@ npx sequelize-cli db:migrate
 
 ## Rollback All Migration
 npx sequelize-cli db:migrate:undo
+npx sequelize-cli db:migrate:undo:all
+
+
+Need Install sequelize-cli
 
 ## Running Seed
 npx sequelize db:seed:all
