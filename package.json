@@ -1,9 +1,12 @@
 {
     "type": "commonjs",
-    "name": "learn-express-js",
+    "name": "boiler-plate-api",
     "version": "0.0.1",
     "author": "Florencius Benardi",
     "main": "app.js",
+    "engines": {
+        "node": "18.15.0"
+    },
     "scripts": {
         "pg:init": "echo $",
         "pg:createdb": "createdb -h 127.0.0.1 app",
@@ -12,30 +15,26 @@
         "sequelize": "sequelize --options-path=database/options.js",
         "build:css": "postcss ./src/public/styles/tailwind.css -o ./src/public/styles/output.css -w"
     },
+    "license": "ISC",
     "dependencies": {
-        "@sentry/node": "^6.19.6",
-        "@sentry/tracing": "^6.19.6",
-        "@tailwindcss/aspect-ratio": "^0.4.2",
-        "@tailwindcss/forms": "^0.5.3",
-        "bcrypt": "^5.0.1",
+        "@sentry/node": "^7.28.1",
+        "@sentry/tracing": "^7.28.1",
+        "axios": "^1.2.1",
+        "bcrypt": "^5.1.0",
         "body-parser": "^1.20.1",
-        "dotenv": "^16.0.0",
-        "ejs": "^3.1.8",
-        "express": "^4.18.1",
-        "moment": "^2.29.3",
-        "pg": "^8.7.3",
-        "postcss-cli": "^10.1.0",
-        "restler": "^2.0.1",
-        "sequelize": "^6.19.0",
-        "tw-elements": "^1.0.0-alpha13"
+        "compression": "^1.7.4",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "express-validator": "^6.15.0",
+        "hashids": "^2.2.11",
+        "moment": "^2.29.4",
+        "morgan": "^1.10.0",
+        "pg": "^8.8.0",
+        "randomstring": "^1.2.3",
+        "sequelize": "^6.28.0"
     },
     "devDependencies": {
-        "@tailwindcss/typography": "^0.5.8",
-        "autoprefixer": "^10.4.13",
-        "nodemon": "^2.0.15",
-        "postcss": "^8.4.20",
-        "postcss-import": "^15.1.0",
-        "sequelize-cli": "^6.5.2",
-        "tailwindcss": "^3.2.4"
+        "sequelize-cli": "^6.5.2"
     }
 }
