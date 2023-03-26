@@ -8,7 +8,8 @@ module.exports = {
     "host": process.env.DB_DEV_HOST,
     "port": process.env.DB_DEV_PORT,
     "migrationStorageTableName": "migrations",
-    "dialect": process.env.DB_DEV_CONNECTION
+    "dialect": process.env.DB_DEV_CONNECTION,
+    "logging": false
   },
   "test": {
     "username": process.env.DB_USER,
@@ -17,7 +18,8 @@ module.exports = {
     "host": process.env.DB_HOST,
     "port": process.env.DB_PORT,
     "migrationStorageTableName": "migrations",
-    "dialect": process.env.DB_CONNECTION
+    "dialect": process.env.DB_CONNECTION,
+    "logging": false
   },
   "production": {
     "username": process.env.DB_USER,
@@ -26,6 +28,7 @@ module.exports = {
     "host": process.env.DB_HOST,
     "port": process.env.DB_PORT,
     "migrationStorageTableName": "migrations",
-    "dialect": process.env.DB_CONNECTION
+    "dialect": process.env.DB_CONNECTION,
+    "logging": false
   }
 }

@@ -8,7 +8,7 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../../config/sequelize.js');
 const db = {};
 
-let sequelize = new Sequelize(config[env].database, config[env].username, config[env].password, config[env]);
+let sequelize = new Sequelize(config[env].database, config[env].username, config[env].password, config[env], { logging: false,  });
 
 try {
   sequelize.authenticate();

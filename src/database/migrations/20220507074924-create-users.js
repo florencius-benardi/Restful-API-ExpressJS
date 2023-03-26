@@ -2,50 +2,43 @@
 /** @type {import('sequelize-cli').Migration} */
 const userFields = require('../tableColumns/system/users')
 
-const { ATTR_TABLE,
-  ATTR_CHAR_FIRSTNAME,
-  ATTR_CHAR_LASTNAME,
+const {
+  ATTR_TABLE,
   ATTR_CHAR_USERNAME,
   ATTR_CHAR_EMAIL,
   ATTR_CHAR_PASSWORD,
   ATTR_CHAR_MOBILE,
+  ATTR_INT_MEMBER,
   ATTR_INT_WRONG_PASS,
   ATTR_INT_STATUS,
+  ATTR_INT_TYPE,
   ATTR_CHAR_CONFIRMATION_CODE,
-  ATTR_DATETIME_LAST_REQUEST_TIME,
   ATTR_DATETIME_VERIFIED,
   ATTR_INT_ID,
   ATTR_DATETIME_CREATED_AT,
   ATTR_DATETIME_UPDATED_AT,
   ATTR_INT_CREATED_BY,
   ATTR_INT_UPDATED_BY,
-  ATTR_DATETIME_DELETED_AT } = userFields
+  ATTR_DATETIME_DELETED_AT
+} = userFields
 
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable(ATTR_TABLE, {
       [ATTR_INT_ID]: {
+        type: Sequelize.BIGINT,
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.BIGINT
+        autoIncrement: true
       },
       [ATTR_CHAR_USERNAME]: {
         type: Sequelize.STRING(20),
         allowNull: false,
         unique: true
       },
-      [ATTR_CHAR_FIRSTNAME]: {
-        type: Sequelize.STRING(20),
-        allowNull: false
-      },
-      [ATTR_CHAR_LASTNAME]: {
-        type: Sequelize.STRING(20),
-        allowNull: true
-      },
       [ATTR_CHAR_EMAIL]: {
-        allowNull: true,
         type: Sequelize.STRING(100),
+        allowNull: true,
         unique: true
       },
       [ATTR_CHAR_PASSWORD]: {
@@ -75,10 +68,6 @@ module.exports = {
       },
       [ATTR_CHAR_CONFIRMATION_CODE]: {
         type: Sequelize.STRING(100),
-        allowNull: true,
-      },
-      [ATTR_DATETIME_LAST_REQUEST_TIME]: {
-        type: Sequelize.STRING,
         allowNull: true,
       },
       [ATTR_DATETIME_CREATED_AT]: {

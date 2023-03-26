@@ -3,7 +3,7 @@ const ATTR_CHAR_TYPE = 'type'
 const ATTR_INT_USER = 'user_id'
 const ATTR_CHAR_NAME = 'name'
 const ATTR_CHAR_TOKEN = 'token'
-const ATTR_JSON_ABILITIES = 'abilities'
+const ATTR_JSON_ABILITIES = 'scopes'
 const ATTR_DATETIME_LAST_USED_AT = 'last_used_at'
 const ATTR_DATETIME_EXPIRED_AT = 'expired_at'
 

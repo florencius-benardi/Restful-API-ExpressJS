@@ -1,9 +1,9 @@
 'use strict';
+
+const { ATTR_TABLE, ATTR_INT_ID, ATTR_CHAR_OBJECT, ATTR_CHAR_DESCRIPTION, ATTR_INT_CREATED_BY, ATTR_INT_UPDATED_BY, ATTR_DATETIME_CREATED_AT, ATTR_DATETIME_UPDATED_AT } = require('../tableColumns/system/modules');
+const users = require('../tableColumns/system/users');
+
 /** @type {import('sequelize-cli').Migration} */
-
-const { ATTR_TABLE, ATTR_CHAR_DESCRIPTION, ATTR_INT_ID, ATTR_DATETIME_CREATED_AT, ATTR_DATETIME_UPDATED_AT, ATTR_INT_CREATED_BY, ATTR_INT_UPDATED_BY, ATTR_DATETIME_DELETED_AT } = require('../tableColumns/system/roles')
-const users = require('../tableColumns/system/users')
-
 module.exports = {
   async up(queryInterface, Sequelize) {
     return Promise.all([
@@ -14,9 +14,14 @@ module.exports = {
           primaryKey: true,
           type: Sequelize.INTEGER
         },
-        [ATTR_CHAR_DESCRIPTION]: {
-          type: Sequelize.STRING(50),
+        [ATTR_CHAR_OBJECT]: {
+          type: Sequelize.STRING,
+          allowNull: false,
           unique: true
+        },
+        [ATTR_CHAR_DESCRIPTION]: {
+          type: Sequelize.STRING,
+          allowNull: false
         },
         [ATTR_INT_CREATED_BY]: {
           allowNull: true,
@@ -31,10 +36,6 @@ module.exports = {
           type: Sequelize.DATE
         },
         [ATTR_DATETIME_UPDATED_AT]: {
-          allowNull: false,
-          type: Sequelize.DATE
-        },
-        [ATTR_DATETIME_DELETED_AT]: {
           allowNull: false,
           type: Sequelize.DATE
         }
@@ -59,8 +60,7 @@ module.exports = {
         },
         onDelete: 'SET NULL'
       })
-    ])
-
+    ]);
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable(ATTR_TABLE);

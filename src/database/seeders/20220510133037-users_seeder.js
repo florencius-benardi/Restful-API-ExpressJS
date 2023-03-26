@@ -1,13 +1,6 @@
 'use strict';
 
-const userCol = require('../tableColumns/system/users')
-const bcrypt = require('bcrypt');
-const { now } = require('moment');
-require('dotenv').config();
-
 const { ATTR_TABLE,
-  ATTR_CHAR_FIRSTNAME,
-  ATTR_CHAR_LASTNAME,
   ATTR_CHAR_USERNAME,
   ATTR_CHAR_EMAIL,
   ATTR_CHAR_PASSWORD,
@@ -19,7 +12,12 @@ const { ATTR_TABLE,
   ATTR_DATETIME_UPDATED_AT,
   ATTR_INT_CREATED_BY,
   ATTR_INT_UPDATED_BY,
-  ATTR_DATETIME_DELETED_AT } = userCol
+  ATTR_DATETIME_DELETED_AT
+} = require('../tableColumns/system/users')
+
+const bcrypt = require('bcrypt');
+const { now } = require('moment');
+require('dotenv').config();
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -29,24 +27,22 @@ module.exports = {
     */
 
     const salt = bcrypt.genSaltSync(parseInt(process.env.BCRYPT_SALT_ROUND))
-    const encrypt_pass = bcrypt.hashSync(process.env.BCRYPT_DEFAULT_PASS, salt);
+    const encryptedPass = bcrypt.hashSync(process.env.BCRYPT_DEFAULT_PASS, salt)
 
     await queryInterface.bulkInsert(ATTR_TABLE, [{
-      [ATTR_CHAR_FIRSTNAME]: 'SYSTEM',
-      [ATTR_CHAR_LASTNAME]: 'ADMINISTRATOR',
       [ATTR_CHAR_USERNAME]: 'ADMINISTRATOR',
       [ATTR_CHAR_EMAIL]: 'admin@localhost.com',
-      [ATTR_CHAR_PASSWORD]: encrypt_pass,
-      [ATTR_CHAR_MOBILE]: '62121313712',
+      [ATTR_CHAR_PASSWORD]: encryptedPass,
+      [ATTR_CHAR_MOBILE]: null,
       [ATTR_INT_WRONG_PASS]: 0,
-      [ATTR_INT_STATUS]: 0,
+      [ATTR_INT_STATUS]: 1,
       [ATTR_DATETIME_VERIFIED]: null,
       [ATTR_DATETIME_CREATED_AT]: new Date(now()),
       [ATTR_DATETIME_UPDATED_AT]: new Date(now()),
       [ATTR_INT_CREATED_BY]: null,
       [ATTR_INT_UPDATED_BY]: null,
       [ATTR_DATETIME_DELETED_AT]: null,
-    }], {});
+    }], { beforeCreate: true });
 
   },
 
@@ -55,6 +51,6 @@ module.exports = {
     /**
      * Add commands to revert seed here.
      */
-    return queryInterface.bulkDelete(ATTR_TABLE, null, { truncate: true, cascade: true, restartIdentity: true });
+    return queryInterface.bulkDelete(ATTR_TABLE, null, { truncate: true, restartIdentity: true });
   }
 };
