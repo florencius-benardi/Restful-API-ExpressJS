@@ -1,32 +1,39 @@
-const model = require('../../../../../database/models/index');
-const { ATTR_INT_ID, ATTR_CHAR_TOKEN, ATTR_TABLE } = require('../../../../../database/tableColumns/system/usertokens');
+const model = require('../../../../../database/sequelize/models/index')
+const { ATTR_INT_ID, ATTR_CHAR_TOKEN, ATTR_TABLE, ATTR_JSON_ABILITIES } = require('../../../../../database/tableColumns/system/usertokens')
+const UserToken = model[ATTR_TABLE]
 
 exports.createUserToken = async (data) => {
-    const result = await model[ATTR_TABLE].create(data, {
-        raw: true,
-    }).then(function (res) {
-        return `${res[ATTR_INT_ID]}|${res[ATTR_CHAR_TOKEN]}`
-    }).catch(function (error) {
-        console.log(error);
-        throw new Error(error);
-    });
-    return result
+  return await UserToken.create(data).then(function (res) {
+    return `${res[ATTR_INT_ID]}|${res[ATTR_CHAR_TOKEN]}`
+  }).catch(function (error) {
+    throw new Error(error)
+  })
+}
+
+exports.setUserTokenAccess = async (params, permissions) => {
+  return await UserToken.update({
+    [ATTR_JSON_ABILITIES]: permissions
+  }, {
+    where: params
+  }).then(function (res) {
+    return res
+  }).catch(function (error) {
+    throw new Error(error)
+  })
 }
 
 exports.revokeUserToken = async (params) => {
-    const result = await model[ATTR_TABLE].findOne({ raw: true, where: params })
-        .then(async function (res) {
-            if (res) {
-                const result = await model[ATTR_TABLE].destroy({
-                    where: {
-                        [ATTR_INT_ID]: res[ATTR_INT_ID]
-                    }
-                });
-                return result
-            }
-        }).catch(function (error) {
-            console.log(error);
-            throw new Error(error);
+  return await UserToken.findOne({ raw: true, where: params })
+    .then(async function (res) {
+      if (res) {
+        const result = await UserToken.destroy({
+          where: {
+            [ATTR_INT_ID]: res[ATTR_INT_ID]
+          }
         })
-    return result
+        return result
+      }
+    }).catch(function (error) {
+      throw new Error(error)
+    })
 }

@@ -1,0 +1,55 @@
+version: '3'
+name: 'boiler-plate-api'
+volumes:
+  backendvolume:
+    name: boiler-plate-api
+services:
+  # postgres:
+  #   image: postgres
+  #   container_name: postgresql
+  #   env_file:
+  #     - ./xxxx.env
+  #   volumes:
+  #     - ./pgdata:/var/lib/postgresql/data
+  #   ports:
+  #     - 5432:5432
+  #   networks:
+  #     - bridging
+  mongo:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    # env_file:
+    #   - xxxx
+    # volumes:
+    #   - xxxx
+    ports:
+      - 27017:27017
+    networks:
+      - bridging
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: nodemon start
+    image: backend:lastest
+    container_name: backend
+    stdin_open: true
+    tty: true
+    env_file:
+      - ./.env
+    volumes:
+      - .:/app
+      - backendvolume:/app/node_modules
+    ports:
+      - 3020:3020
+    depends_on:
+      - mongo
+    networks:
+      - bridging
+networks:
+  bridging:
+    driver: bridge

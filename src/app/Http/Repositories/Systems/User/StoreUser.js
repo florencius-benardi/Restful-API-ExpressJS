@@ -1,36 +1,37 @@
-const model = require('../../../../database/models/index');
-const { ATTR_CHAR_USERNAME, ATTR_INT_ID } = require('../../../../database/tableColumns/system/users');
+const model = require('../../../../../database/sequelize/models/index')
+const { ATTR_INT_ID, ATTR_TABLE } = require('../../../../../database/tableColumns/system/users')
 
-exports.updateUser = async (params, data) => {
-    const users = await model.users.update(data, { where: params }, {
-        multi: true
-    }).then(function (res) {
-        return res
-    }).catch(function (error) {
-        console.log(error);
-        throw new Error(error);
+const Users = model[ATTR_TABLE]
+
+exports.updateUser = async (params, data, t) => {
+    return await Users.update(data, {
+        where: params,
+        transaction: t
     })
-    return users
+        .then(function (res) {
+            return res
+        }).catch(function (error) {
+            throw new Error(error)
+        })
 }
 
-exports.storeUser = async (data) => {
-    const result = await model.users.create(data, {
-        returning: false,
-        plain: true
+exports.storeUser = async (data, t) => {
+    return await Users.create(data, {
+        returning: true,
+        plain: true,
+        transaction: t
     }).then(function (res) {
         return res
     }).catch(function (error) {
-        console.log(error);
-        throw new Error(error);
-    });
-    return result
+        throw new Error(error)
+    })
 }
 
-exports.deleteUser = async (id) => {
-    const users = await model.users.destroy({
+exports.deleteUser = async (id, t) => {
+    return await Users.destroy({
         where: {
             [ATTR_INT_ID]: id
-        }
-    });
-    return users
+        },
+        transaction: t
+    })
 }

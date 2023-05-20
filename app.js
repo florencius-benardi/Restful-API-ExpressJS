@@ -8,9 +8,10 @@ const compression = require('compression')
 const logger = require('morgan')
 const path = require('path')
 const bodyParser = require('body-parser')
-const expressValidator = require('express-validator')
+const mongoose = require('mongoose')
 
 const api = require('./src/routes/api')
+const web = require('./src/routes/web');
 
 let corsOptions = {
     origin: true,
@@ -39,8 +40,9 @@ app.use(compression());
 // Add Logger Acceess
 // app.use(logger());
 
-// app.use('/', web)
 app.use('/api', api)
+app.use('/', web)
+
 app.use((error, req, res, next) => {
     const { statusCode, message, errors } = error
     res.status(statusCode || 500).json({

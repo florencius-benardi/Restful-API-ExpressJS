@@ -1,12 +1,18 @@
 {
     "type": "commonjs",
     "name": "boiler-plate-api",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "author": "Florencius Benardi",
     "main": "app.js",
     "engines": {
-        "node": "18.15.0"
+        "node": "18.16.0"
     },
+    "keywords": [
+        "postgresql",
+        "mongodb",
+        "expressjs",
+        "nodejs"
+    ],
     "scripts": {
         "pg:init": "echo $",
         "pg:createdb": "createdb -h 127.0.0.1 app",
@@ -19,20 +25,29 @@
     "dependencies": {
         "@sentry/node": "^7.28.1",
         "@sentry/tracing": "^7.28.1",
+        "async": "^3.2.4",
         "axios": "^1.2.1",
         "bcrypt": "^5.1.0",
         "body-parser": "^1.20.1",
         "compression": "^1.7.4",
         "cors": "^2.8.5",
         "dotenv": "^16.0.3",
+        "exceljs": "^4.3.0",
         "express": "^4.18.2",
-        "express-validator": "^6.15.0",
+        "express-validator": "^7.0.0",
         "hashids": "^2.2.11",
+        "mime-types": "^2.1.35",
         "moment": "^2.29.4",
+        "moment-timezone": "^0.5.43",
+        "mongodb": "^5.5.0",
+        "mongoose": "^7.2.0",
         "morgan": "^1.10.0",
+        "multer": "^1.4.5-lts.1",
         "pg": "^8.8.0",
         "randomstring": "^1.2.3",
-        "sequelize": "^6.28.0"
+        "sequelize": "^6.28.0",
+        "socket.io": "^4.6.1",
+        "tedious": "^16.0.0"
     },
     "devDependencies": {
         "sequelize-cli": "^6.5.2"

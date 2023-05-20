@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config()
 
 const Hashids = require('hashids/cjs')
 
@@ -8,6 +8,13 @@ module.exports = {
             .toLowerCase()
             .match(
                 /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-            ));
+            ))
+    },
+    isArray: (value) => {
+        return Array.isArray(value)
+    },
+    lenArr: (value) => {
+        return value.length
     }
+
 }

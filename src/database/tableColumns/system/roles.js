@@ -8,6 +8,12 @@ const ATTR_INT_CREATED_BY = 'created_by_id'
 const ATTR_INT_UPDATED_BY = 'updated_by_id'
 const ATTR_DATETIME_DELETED_AT = 'deleted_at'
 const ATTR_CHAR_ENCRYPT = 'encryption_id'
+const ATTR_INT_VERSION = 'version'
+
+const ATTR_RELATION_UPDATED_BY = 'updated_by'
+const ATTR_RELATION_CREATED_BY = 'created_by'
+const ATTR_RELATION_MODULES = 'modules'
+const ATTR_RELATION_ORGANIZATION = 'organization'
 
 module.exports = {
     ATTR_TABLE,
@@ -18,5 +24,10 @@ module.exports = {
     ATTR_INT_CREATED_BY,
     ATTR_INT_UPDATED_BY,
     ATTR_DATETIME_DELETED_AT,
+    ATTR_RELATION_UPDATED_BY,
+    ATTR_RELATION_CREATED_BY,
+    ATTR_RELATION_MODULES,
+    ATTR_RELATION_ORGANIZATION,
     ATTR_CHAR_ENCRYPT,
+    ATTR_INT_VERSION
 };
